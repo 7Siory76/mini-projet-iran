@@ -108,12 +108,13 @@ function displayArticles(articles) {
  */
 function createArticleElement(article) {
     const formattedDate = formatDate(article.date_creation);
+    const altText = `Article: ${escapeHtml(article.titre)} - Publié par ${escapeHtml(article.auteur)}`;
     
     return `
         <article>
-            <img src="/images/placeholder.svg" alt="${escapeHtml(article.titre)}" class="article-image">
+            <img src="/images/placeholder.svg" alt="${altText}" class="article-image">
             <div class="article-content">
-                <h2><a href="article-${article.id}.html">${escapeHtml(article.titre)}</a></h2>
+                <h3><a href="article-${article.id}.html">${escapeHtml(article.titre)}</a></h3>
                 <div class="article-meta">
                     <span>Publié le ${formattedDate}</span> • <span>Par ${escapeHtml(article.auteur)}</span>
                 </div>

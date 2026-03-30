@@ -64,7 +64,7 @@ function displayArticleDetail(article) {
     document.getElementById('article-loading').style.display = 'none';
     document.getElementById('article-content').style.display = 'block';
     
-    // Remplir les informations
+    // Remplir les informations de l'article
     document.getElementById('article-title').textContent = article.titre;
     document.getElementById('article-body').innerHTML = article.contenu;
     document.getElementById('article-author').textContent = `Par ${escapeHtml(article.auteur)}`;
@@ -72,6 +72,34 @@ function displayArticleDetail(article) {
     
     // Mettre à jour le titre de la page
     document.title = `${article.titre} - Iran Actualités`;
+    
+    // Mettre à jour les meta tags pour le SEO
+    updateMetaTags(article);
+}
+
+function updateMetaTags(article) {
+    // Description meta
+    const excerpt = stripTags(article.contenu).substring(0, 160);
+    updateOrCreateMetaTag('description', excerpt);
+    
+    // Open Graph tags
+    updateOrCreateMetaTag('og:title', article.titre, 'property');
+    updateOrCreateMetaTag('og:description', excerpt, 'property');
+    updateOrCreateMetaTag('og:url', window.location.href, 'property');
+    
+    // Twitter Card tags
+    updateOrCreateMetaTag('twitter:title', article.titre);
+    updateOrCreateMetaTag('twitter:description', excerpt);
+}
+
+function updateOrCreateMetaTag(name, content, type = 'name') {
+    let tag = document.querySelector(`meta[${type}="${name}"]`);
+    if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute(type, name);
+        document.head.appendChild(tag);
+    }
+    tag.setAttribute('content', content);
 }
 
 function showError() {
@@ -94,4 +122,10 @@ function escapeHtml(text) {
         "'": '&#039;'
     };
     return text.replace(/[&<>"']/g, m => map[m]);
+}
+
+function stripTags(html) {
+    const tmp = document.createElement('DIV');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
 }
