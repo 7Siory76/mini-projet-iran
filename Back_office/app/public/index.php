@@ -43,6 +43,14 @@ function uniqueSlug(PDO $pdo, string $baseSlug, ?int $excludeId = null): string
     }
 }
 
+function jsonResponse(array $payload, int $statusCode = 200): never
+{
+    http_response_code($statusCode);
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode($payload, JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
 $config = require __DIR__ . '/../config/database.php';
 $pdo = Connection::getPdo($config);
 
@@ -50,6 +58,7 @@ $message = '';
 $error = '';
 $action = $_GET['action'] ?? 'list';
 $editId = isset($_GET['id']) ? (int) $_GET['id'] : null;
+$viewSlug = isset($_GET['slug']) ? trim((string) $_GET['slug']) : '';
 
 $formData = [
     'id' => null,
@@ -60,6 +69,76 @@ $formData = [
     'contenu' => '',
     'contenu_brut' => '',
 ];
+
+if ($action === 'upload-image' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_FILES['image'])) {
+        jsonResponse(['ok' => false, 'message' => 'Aucun fichier image reçu.'], 400);
+    }
+
+    $file = $_FILES['image'];
+    if (($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
+        jsonResponse(['ok' => false, 'message' => 'Erreur pendant l\'upload image.'], 400);
+    }
+
+    if (($file['size'] ?? 0) > 5 * 1024 * 1024) {
+        jsonResponse(['ok' => false, 'message' => 'Image trop volumineuse (max 5MB).'], 400);
+    }
+
+    $tmpPath = (string) ($file['tmp_name'] ?? '');
+    if (!is_uploaded_file($tmpPath)) {
+        jsonResponse(['ok' => false, 'message' => 'Fichier upload invalide.'], 400);
+    }
+
+    $originalName = (string) ($file['name'] ?? 'image');
+    $extension = strtolower(pathinfo($originalName, PATHINFO_EXTENSION));
+    $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'];
+
+    if (!in_array($extension, $allowedExtensions, true)) {
+        $mimeType = '';
+        if (function_exists('finfo_open')) {
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            if ($finfo !== false) {
+                $detected = finfo_file($finfo, $tmpPath);
+                $mimeType = is_string($detected) ? $detected : '';
+                finfo_close($finfo);
+            }
+        }
+
+        $mimeToExtension = [
+            'image/jpeg' => 'jpg',
+            'image/png' => 'png',
+            'image/gif' => 'gif',
+            'image/webp' => 'webp',
+            'image/svg+xml' => 'svg',
+        ];
+
+        if (isset($mimeToExtension[$mimeType])) {
+            $extension = $mimeToExtension[$mimeType];
+        }
+    }
+
+    if (!in_array($extension, $allowedExtensions, true)) {
+        jsonResponse(['ok' => false, 'message' => 'Format non supporté.'], 400);
+    }
+
+    $imageDirectory = __DIR__ . '/images';
+    if (!is_dir($imageDirectory) && !mkdir($imageDirectory, 0777, true) && !is_dir($imageDirectory)) {
+        jsonResponse(['ok' => false, 'message' => 'Impossible de créer le dossier images.'], 500);
+    }
+
+    $newFilename = sprintf('%s-%s.%s', date('YmdHis'), bin2hex(random_bytes(4)), $extension);
+    $destinationPath = $imageDirectory . '/' . $newFilename;
+
+    if (!move_uploaded_file($tmpPath, $destinationPath)) {
+        jsonResponse(['ok' => false, 'message' => 'Impossible de sauvegarder l\'image.'], 500);
+    }
+
+    jsonResponse([
+        'ok' => true,
+        'url' => '/images/' . $newFilename,
+        'message' => 'Image uploadée avec succès.',
+    ]);
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mode = $_POST['mode'] ?? 'create';
@@ -152,6 +231,18 @@ if ($action === 'edit' && $editId !== null && $error === '') {
     }
 }
 
+$viewArticle = null;
+if ($action === 'view' && $viewSlug !== '') {
+    $statement = $pdo->prepare('SELECT * FROM articles WHERE slug = :slug');
+    $statement->execute([':slug' => $viewSlug]);
+    $viewArticle = $statement->fetch();
+
+    if (!$viewArticle) {
+        $error = 'Article introuvable.';
+        $action = 'list';
+    }
+}
+
 $statement = $pdo->query(
     'SELECT id, titre, slug, auteur, statut, date_creation, date_modification
      FROM articles
@@ -185,6 +276,10 @@ $articles = $statement->fetchAll();
         .badge { padding: 2px 8px; border-radius: 999px; font-size: 12px; }
         .badge.brouillon { background: #fff3cd; color: #7a5a00; }
         .badge.publie { background: #d4edda; color: #1e6e34; }
+        .article-view { max-width: 900px; border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 2rem; }
+        .article-view img { max-width: 100%; height: auto; }
+        .meta { color: #666; margin-bottom: 1rem; }
+        .small { color: #666; font-size: 13px; }
     </style>
 </head>
 <body>
@@ -240,14 +335,29 @@ $articles = $statement->fetchAll();
                 <button class="tool" type="button" data-cmd="formatBlock" data-value="h2">H2</button>
                 <button class="tool" type="button" data-cmd="formatBlock" data-value="h3">H3</button>
                 <button class="tool" type="button" id="btn-link">Lien</button>
+                <button class="tool" type="button" id="btn-image-upload">Uploader image</button>
                 <button class="tool" type="button" data-cmd="removeFormat">Nettoyer</button>
             </div>
+            <input type="file" id="image-file-input" accept="image/*" style="display:none;">
+            <p class="small">Upload local: JPG, PNG, GIF, WEBP, SVG (max 5MB). Tu peux aussi coller avec Ctrl+V ou glisser-déposer.</p>
             <div id="editor" contenteditable="true"><?= $formData['contenu'] ?? '' ?></div>
 
             <div style="margin-top: 12px;">
                 <button class="btn" type="submit">Enregistrer</button>
             </div>
         </form>
+    </div>
+    <?php endif; ?>
+
+    <?php if ($action === 'view' && $viewArticle): ?>
+    <div class="article-view">
+        <h2><?= htmlspecialchars($viewArticle['titre']) ?></h2>
+        <div class="meta">
+            Slug: <?= htmlspecialchars($viewArticle['slug']) ?> |
+            Auteur: <?= htmlspecialchars((string) ($viewArticle['auteur'] ?? '-')) ?> |
+            Statut: <?= htmlspecialchars($viewArticle['statut']) ?>
+        </div>
+        <div><?= $viewArticle['contenu'] ?></div>
     </div>
     <?php endif; ?>
 
@@ -284,7 +394,11 @@ $articles = $statement->fetchAll();
                     </td>
                     <td><?= htmlspecialchars((string) $article['date_creation']) ?></td>
                     <td><?= htmlspecialchars((string) $article['date_modification']) ?></td>
-                    <td><a href="/?action=edit&id=<?= (int) $article['id'] ?>">Modifier</a></td>
+                    <td>
+                        <a href="/?action=view&slug=<?= urlencode($article['slug']) ?>">Voir</a>
+                        |
+                        <a href="/?action=edit&id=<?= (int) $article['id'] ?>">Modifier</a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         <?php endif; ?>
@@ -306,12 +420,97 @@ $articles = $statement->fetchAll();
         });
 
         const linkButton = document.getElementById('btn-link');
+        const imageUploadButton = document.getElementById('btn-image-upload');
+        const imageFileInput = document.getElementById('image-file-input');
+
+        const uploadImageFile = async (file) => {
+            const uploadData = new FormData();
+            uploadData.append('image', file);
+
+            const response = await fetch('/?action=upload-image', {
+                method: 'POST',
+                body: uploadData,
+            });
+            const result = await response.json();
+
+            if (!response.ok || !result.ok || !result.url) {
+                throw new Error(result.message || 'Échec upload image.');
+            }
+
+            const imgHtml = `<img src="${result.url}" alt="Image" style="max-width:100%;height:auto;" />`;
+            document.execCommand('insertHTML', false, imgHtml);
+            editor.focus();
+        };
         if (linkButton) {
             linkButton.addEventListener('click', () => {
                 const url = window.prompt('URL du lien:');
                 if (url) {
                     document.execCommand('createLink', false, url);
                     editor.focus();
+                }
+            });
+        }
+
+        if (imageUploadButton && imageFileInput && editor) {
+            imageUploadButton.addEventListener('click', () => {
+                imageFileInput.click();
+            });
+
+            imageFileInput.addEventListener('change', async () => {
+                const file = imageFileInput.files && imageFileInput.files[0] ? imageFileInput.files[0] : null;
+                if (!file) {
+                    return;
+                }
+
+                try {
+                    await uploadImageFile(file);
+                } catch (uploadError) {
+                    window.alert(uploadError.message || 'Erreur réseau pendant l\'upload image.');
+                } finally {
+                    imageFileInput.value = '';
+                }
+            });
+
+            editor.addEventListener('paste', async (event) => {
+                const clipboardItems = event.clipboardData && event.clipboardData.items ? event.clipboardData.items : [];
+                for (const item of clipboardItems) {
+                    if (item.kind === 'file' && item.type.startsWith('image/')) {
+                        const file = item.getAsFile();
+                        if (!file) {
+                            continue;
+                        }
+
+                        event.preventDefault();
+                        try {
+                            await uploadImageFile(file);
+                        } catch (uploadError) {
+                            window.alert(uploadError.message || 'Impossible d\'uploader l\'image collée.');
+                        }
+                        return;
+                    }
+                }
+            });
+
+            editor.addEventListener('dragover', (event) => {
+                event.preventDefault();
+            });
+
+            editor.addEventListener('drop', async (event) => {
+                const droppedFiles = event.dataTransfer && event.dataTransfer.files ? event.dataTransfer.files : [];
+                if (!droppedFiles.length) {
+                    return;
+                }
+
+                const file = droppedFiles[0];
+                if (!file.type.startsWith('image/')) {
+                    return;
+                }
+
+                event.preventDefault();
+                try {
+                    await uploadImageFile(file);
+                } catch (uploadError) {
+                    window.alert(uploadError.message || 'Impossible d\'uploader l\'image déposée.');
                 }
             });
         }
