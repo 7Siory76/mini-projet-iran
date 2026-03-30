@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  web:
+    image: php:8.3-apache
+    container_name: frontoffice_web
+    ports:
+      - "${FRONT_PORT:-3000}:80"
+    volumes:
+      - ./:/var/www/html
+    restart: unless-stopped
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT:-development}
+

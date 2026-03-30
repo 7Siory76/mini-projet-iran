@@ -1,0 +1,282 @@
+/* ===========================
+   RÉINITIALISATION ET GLOBALES
+   =========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+a {
+    transition: color 0.3s ease;
+}
+
+/* ===========================
+   HEADER
+   =========================== */
+
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header h1 {
+    font-size: 28px;
+    color: #1a1a1a;
+    margin-bottom: 0;
+    font-weight: 700;
+}
+
+/* ===========================
+   NAVIGATION
+   =========================== */
+
+nav {
+    background-color: #333;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+}
+
+nav ul li a.active {
+    background-color: #e74c3c;
+}
+
+/* ===========================
+   MAIN CONTENT
+   =========================== */
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+section {
+    margin-bottom: 50px;
+}
+
+section h2 {
+    font-size: 24px;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #e74c3c;
+    display: inline-block;
+    font-weight: 700;
+}
+
+/* ===========================
+   GRILLE D'ARTICLES
+   =========================== */
+
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+article {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.article-image {
+    width: 100%;
+    height: 200px;
+    background-color: #ddd;
+    object-fit: cover;
+    display: block;
+}
+
+.article-content {
+    padding: 20px;
+}
+
+article h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    border: none;
+    padding: 0;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+article h2 a {
+    color: #1a1a1a;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+article h2 a:hover {
+    color: #e74c3c;
+}
+
+.article-meta {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.article-excerpt {
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.article-link {
+    display: inline-block;
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.article-link:hover {
+    color: #c0392b;
+}
+
+/* ===========================
+   FOOTER
+   =========================== */
+
+footer {
+    background-color: #222;
+    color: #fff;
+    padding: 40px 20px;
+    margin-top: 50px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+footer p {
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+footer a {
+    color: #e74c3c;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.footer-links {
+    margin-bottom: 20px;
+}
+
+.footer-links a {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 22px;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li a {
+        padding: 12px 15px;
+        border-bottom: 1px solid #555;
+    }
+
+    .articles-grid {
+        grid-template-columns: 1fr;
+    }
+
+    section h2 {
+        font-size: 20px;
+    }
+
+    .footer-links a {
+        display: block;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 18px;
+    }
+
+    section h2 {
+        font-size: 18px;
+    }
+
+    article h2 {
+        font-size: 16px;
+    }
+
+    main {
+        padding: 20px 15px;
+    }
+
+    .header-container,
+    nav ul {
+        padding: 0 15px;
+    }
+}

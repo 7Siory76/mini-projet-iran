@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test API</title>
+</head>
+<body>
+    <h1>Test API Articles</h1>
+    <button onclick="testAPI()">Tester l'API</button>
+    <pre id="result"></pre>
+
+    <script>
+        async function testAPI() {
+            const result = document.getElementById('result');
+            result.textContent = 'Chargement...';
+            
+            try {
+                const response = await fetch('http://localhost:8080/app/api/articles.php');
+                result.textContent = `Status: ${response.status}\n`;
+                result.textContent += `Content-Type: ${response.headers.get('content-type')}\n\n`;
+                
+                const data = await response.text();
+                result.textContent += data;
+            } catch (error) {
+                result.textContent = `Erreur: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>
