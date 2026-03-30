@@ -1,0 +1,12 @@
+# Réécriture d'URL pour SEO-friendly URLs
+# Apache mod_rewrite configuration
+
+# Activer FollowSymlinks pour permettre les redirections
+Options +FollowSymlinks
+
+# Activer le moteur de réécriture
+RewriteEngine On
+
+# Réécrire article-N.html vers detail.html?id=N
+# Exemple: article-1.html → detail.html?id=1
+RewriteRule ^article-([0-9]+)\.html$ detail.html?id=$1 [L]

@@ -9,8 +9,24 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function getArticleIdFromURL() {
+    // Support deux formats:
+    // 1. article-XX.html (nouveau format SEO avec .htaccess)
+    // 2. detail.html?id=XX (ancien format)
+    
+    // Format SEO-friendly: article-XX.html
+    const seoMatch = window.location.pathname.match(/article-(\d+)\.html/);
+    if (seoMatch) {
+        return seoMatch[1];
+    }
+    
+    // Format classique: detail.html?id=XX
     const params = new URLSearchParams(window.location.search);
-    return params.get('id');
+    const id = params.get('id');
+    if (id) {
+        return id;
+    }
+    
+    return null;
 }
 
 async function loadArticleDetail() {

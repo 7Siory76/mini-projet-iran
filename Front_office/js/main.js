@@ -113,14 +113,14 @@ function createArticleElement(article) {
         <article>
             <img src="/images/placeholder.svg" alt="${escapeHtml(article.titre)}" class="article-image">
             <div class="article-content">
-                <h2><a href="detail.html?id=${article.id}">${escapeHtml(article.titre)}</a></h2>
+                <h2><a href="article-${article.id}.html">${escapeHtml(article.titre)}</a></h2>
                 <div class="article-meta">
                     <span>Publié le ${formattedDate}</span> • <span>Par ${escapeHtml(article.auteur)}</span>
                 </div>
                 <p class="article-excerpt">
                     ${stripTags(article.contenu).substring(0, 150)}...
                 </p>
-                <a href="detail.html?id=${article.id}" class="article-link">Lire la suite →</a>
+                <a href="article-${article.id}.html" class="article-link">Lire la suite →</a>
             </div>
         </article>
     `;
