@@ -62,3 +62,82 @@ VALUES (
     'Admin',
     'brouillon'
 ) ON CONFLICT DO NOTHING;
+
+INSERT INTO articles (titre, slug, contenu, contenu_brut, auteur, statut)
+VALUES (
+    'Technologie et innovation en Iran',
+    'technologie-innovation-iran',
+    '<h1>L''essor technologique iranien</h1>
+    <p>L''Iran se positionne comme un acteur majeur de l''innovation technologique en Asie.</p>
+    <p>Des startups aux géants industriels, découvrez les projets révolutionnaires en cours.</p>
+    <ul><li>Intelligence artificielle</li><li>Énergies renouvelables</li><li>Biotechnologie</li></ul>',
+    'Technologie et innovation en Iran. L''Iran se positionne comme un acteur majeur de l''innovation technologique.',
+    'Reza Ahmadi',
+    'publie'
+) ON CONFLICT DO NOTHING;
+
+INSERT INTO articles (titre, slug, contenu, contenu_brut, auteur, statut)
+VALUES (
+    'Sports: Les champions iraniens brillent sur la scène internationale',
+    'sports-champions-iran',
+    '<h1>Victoires des athlètes iraniens</h1>
+    <p>Les sportifs iraniens continuent de remporter des succès remarquables aux compétitions internationales.</p>
+    <p><strong>Récents triomphes:</strong></p>
+    <ul><li>Lutte libre - Médailles d''or</li><li>Volley-ball féminin</li><li>Haltérophilie mondiale</li></ul>',
+    'Sports: Les champions iraniens brillent sur la scène internationale. Les sportifs iraniens continuent de remporter des succès',
+    'Fatima Tehrani',
+    'publie'
+) ON CONFLICT DO NOTHING;
+
+INSERT INTO articles (titre, slug, contenu, contenu_brut, auteur, statut)
+VALUES (
+    'Prix du pétrole: Impacts sur l''économie iranienne',
+    'prix-petrole-iran',
+    '<h1>Fluctuation des prix du pétrole</h1>
+    <p>Les variations du marché pétrolier mondial affectent directement l''économie iranienne.</p>
+    <p>Analysons les tendances actuelles et les prévisions pour les mois à venir.</p>
+    <p>Les revenus d''exportation, les investissements étrangers et la stabilité économique en dépendent largement.</p>',
+    'Prix du pétrole: Impacts sur l''économie iranienne. Les variations du marché pétrolier mondial affectent directement l''économie.',
+    'Dr. Karim Nasri',
+    'publie'
+) ON CONFLICT DO NOTHING;
+
+INSERT INTO articles (titre, slug, contenu, contenu_brut, auteur, statut)
+VALUES (
+    'Tourisme en Iran: Une destination émergente',
+    'tourisme-iran-destination',
+    '<h1>L''Iran, destination touristique de choix</h1>
+    <p>L''augmentation du nombre de visiteurs internationaux confirm l''attrait touristique croissant de l''Iran.</p>
+    <p>Des mosquées historiques aux déserts spectaculaires, découvrez les attractions majeures.</p>
+    <p><strong>Sites incontournables:</strong></p>
+    <ul><li>Ispahan - La Perle de l''Orient</li><li>Shiraz - La ville des poètes</li><li>Persépolis - Site archéologique majeur</li></ul>',
+    'Tourisme en Iran: Une destination émergente. L''augmentation du nombre de visiteurs internationaux confirme l''attrait touristique.',
+    'Leila Khatami',
+    'publie'
+) ON CONFLICT DO NOTHING;
+
+INSERT INTO articles (titre, slug, contenu, contenu_brut, auteur, statut)
+VALUES (
+    'Éducation: Réformes dans les universités iraniennes',
+    'education-reformes-universites',
+    '<h1>Nouvelles orientations académiques</h1>
+    <p>Le système éducatif iranien connaît des transformations majeures visant l''excellence académique.</p>
+    <p>L''intégration de nouvelles technologies et la collaboration internationale ouvrent des horizons novateurs.</p>
+    <p>Les universités iraniennes renforcent leurs classements mondiaux et leurs partenariats stratégiques.</p>',
+    'Éducation: Réformes dans les universités iraniennes. Le système éducatif iranien connaît des transformations majeures.',
+    'Professor Hasan Zarif',
+    'publie'
+) ON CONFLICT DO NOTHING;
+
+INSERT INTO articles (titre, slug, contenu, contenu_brut, auteur, statut)
+VALUES (
+    'Environnement: initiatives vertes en Iran',
+    'environnement-initiatives-vertes',
+    '<h1>Vers une Iran plus verte</h1>
+    <p>Le gouvernement lance des initiatives ambitieuses pour protéger l''environnement et lutter contre le changement climatique.</p>
+    <p>Plantations massives d''arbres, énergies renouvelables et réduction des émissions de carbone sont au programme.</p>
+    <p>Les réserves naturelles et les espèces menacées bénéficient également d''efforts de conservation renforcés.</p>',
+    'Environnement: initiatives vertes en Iran. Le gouvernement lance des initiatives ambitieuses pour protéger l''environnement.',
+    'Dr. Zainab Qajar',
+    'publie'
+) ON CONFLICT DO NOTHING;

@@ -8,38 +8,59 @@ document.addEventListener('DOMContentLoaded', function () {
     loadArticleDetail();
 });
 
-function getArticleIdFromURL() {
-    // Support deux formats:
-    // 1. article-XX.html (nouveau format SEO avec .htaccess)
-    // 2. detail.html?id=XX (ancien format)
+function getArticleIdentifier() {
+    // Support quatre formats:
+    // 1. /YYYY/MM/DD/slug-article (format Euronews - prioritaire)
+    // 2. /actualite/slug-article (ancien format SEO)
+    // 3. article-XX.html (ancien format SEO)
+    // 4. detail.html?slug=slug ou detail.html?id=XX
     
-    // Format SEO-friendly: article-XX.html
-    const seoMatch = window.location.pathname.match(/article-(\d+)\.html/);
-    if (seoMatch) {
-        return seoMatch[1];
+    // Format 1: /YYYY/MM/DD/slug-article (ex: /2026/03/30/iran-developpements-politiques)
+    const dateSlugMatch = window.location.pathname.match(/\/(\d{4})\/(\d{2})\/(\d{2})\/([a-z0-9-]+)\/?$/);
+    if (dateSlugMatch) {
+        return { type: 'slug', value: dateSlugMatch[4] };
     }
     
-    // Format classique: detail.html?id=XX
+    // Format 2: /actualite/slug-article
+    const slugMatch = window.location.pathname.match(/\/actualite\/([a-z0-9-]+)\/?$/);
+    if (slugMatch) {
+        return { type: 'slug', value: slugMatch[1] };
+    }
+    
+    // Format 3: article-XX.html
+    const idMatch = window.location.pathname.match(/article-(\d+)\.html/);
+    if (idMatch) {
+        return { type: 'id', value: idMatch[1] };
+    }
+    
+    // Format 4: Query params (slug prioritaire)
     const params = new URLSearchParams(window.location.search);
+    const slug = params.get('slug');
+    if (slug) {
+        return { type: 'slug', value: slug };
+    }
+    
     const id = params.get('id');
     if (id) {
-        return id;
+        return { type: 'id', value: id };
     }
     
     return null;
 }
 
 async function loadArticleDetail() {
-    const articleId = getArticleIdFromURL();
+    const identifier = getArticleIdentifier();
     
-    if (!articleId) {
+    if (!identifier) {
         showError();
         return;
     }
 
     try {
-        console.log('Chargement article ID:', articleId);
-        const response = await fetch(`${API_BASE}/article-detail.php?id=${articleId}`);
+        const apiParam = identifier.type === 'slug' ? `slug=${identifier.value}` : `id=${identifier.value}`;
+        console.log(`Chargement article (${identifier.type}):`, identifier.value);
+        
+        const response = await fetch(`${API_BASE}/article-detail.php?${apiParam}`);
         
         if (!response.ok) {
             throw new Error(`Erreur HTTP: ${response.status}`);

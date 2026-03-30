@@ -108,20 +108,21 @@ function displayArticles(articles) {
  */
 function createArticleElement(article) {
     const formattedDate = formatDate(article.date_creation);
+    const articleURL = getArticleDateURL(article);
     const altText = `Article: ${escapeHtml(article.titre)} - Publié par ${escapeHtml(article.auteur)}`;
     
     return `
         <article>
             <img src="/images/placeholder.svg" alt="${altText}" class="article-image">
             <div class="article-content">
-                <h3><a href="article-${article.id}.html">${escapeHtml(article.titre)}</a></h3>
+                <h3><a href="${articleURL}">${escapeHtml(article.titre)}</a></h3>
                 <div class="article-meta">
                     <span>Publié le ${formattedDate}</span> • <span>Par ${escapeHtml(article.auteur)}</span>
                 </div>
                 <p class="article-excerpt">
                     ${stripTags(article.contenu).substring(0, 150)}...
                 </p>
-                <a href="article-${article.id}.html" class="article-link">Lire la suite →</a>
+                <a href="${articleURL}" class="article-link">Lire la suite →</a>
             </div>
         </article>
     `;
@@ -154,6 +155,20 @@ function formatDate(dateString) {
     const date = new Date(dateString);
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return date.toLocaleDateString('fr-FR', options);
+}
+
+/**
+ * Génère l'URL complète d'un article au format YYYY/MM/DD/slug
+ * Exemple: /2026/03/30/iran-developpements-politiques
+ */
+function getArticleDateURL(article) {
+    const date = new Date(article.date_creation);
+    
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // +1 car getMonth() retourne 0-11
+    const day = String(date.getDate()).padStart(2, '0');
+    
+    return `/${year}/${month}/${day}/${article.slug}`;
 }
 
 /**

@@ -10,10 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 try {
+    // Accepter slug ou id
+    $slug = isset($_GET['slug']) ? $_GET['slug'] : null;
     $id = isset($_GET['id']) ? (int)$_GET['id'] : null;
     
-    if (!$id) {
-        throw new Exception('ID requis');
+    if (!$slug && !$id) {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'error' => 'Paramètre slug ou id requis']);
+        exit();
     }
 
     $host = getenv('POSTGRES_HOST') ?: 'db';
@@ -25,12 +29,23 @@ try {
     $pdo = new PDO($dsn, $user, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $query = $pdo->prepare('
-        SELECT id, titre, slug, contenu, contenu_brut, auteur, date_creation, date_modification, statut 
-        FROM articles 
-        WHERE id = :id AND statut = :statut
-    ');
-    $query->execute([':id' => $id, ':statut' => 'publie']);
+    // Requête par slug (priorité) ou par id
+    if ($slug) {
+        $query = $pdo->prepare('
+            SELECT id, titre, slug, contenu, contenu_brut, auteur, date_creation, date_modification, statut 
+            FROM articles 
+            WHERE slug = :slug AND statut = :statut
+        ');
+        $query->execute([':slug' => $slug, ':statut' => 'publie']);
+    } else {
+        $query = $pdo->prepare('
+            SELECT id, titre, slug, contenu, contenu_brut, auteur, date_creation, date_modification, statut 
+            FROM articles 
+            WHERE id = :id AND statut = :statut
+        ');
+        $query->execute([':id' => $id, ':statut' => 'publie']);
+    }
+    
     $article = $query->fetch(PDO::FETCH_ASSOC);
 
     if (!$article) {

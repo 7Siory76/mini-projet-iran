@@ -7,6 +7,19 @@ Options +FollowSymlinks
 # Activer le moteur de réécriture
 RewriteEngine On
 
-# Réécrire article-N.html vers detail.html?id=N
+# NE PAS réécrire les fichiers réels (css, js, images, etc.)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Réécrire /YYYY/MM/DD/slug vers detail.html?slug=slug
+# Format Euronews: /2026/03/30/iran-developpements-politiques → detail.html?slug=iran-developpements-politiques
+RewriteRule ^([0-9]{4})/([0-9]{2})/([0-9]{2})/([^/]+)/?$ detail.html?slug=$4 [L,QSA]
+
+# Réécrire /actualite/slug-article vers detail.html?slug=slug-article
+# Exemple: /actualite/iran-developpements-politiques → detail.html?slug=iran-developpements-politiques
+RewriteRule ^actualite/([a-z0-9-]+)/?$ detail.html?slug=$1 [L,QSA]
+
+# Réécrire article-N.html vers detail.html?id=N (ancien format)
 # Exemple: article-1.html → detail.html?id=1
-RewriteRule ^article-([0-9]+)\.html$ detail.html?id=$1 [L]
+RewriteRule ^article-([0-9]+)\.html$ detail.html?id=$1 [L,QSA]
+
