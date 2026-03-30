@@ -61,6 +61,25 @@ async function loadArticles() {
 }
 
 /**
+ * Mappe les slugs aux images correspondantes
+ */
+function getArticleImage(slug) {
+    const imageMap = {
+        'bienvenue-blog': 'bienvenue.svg',
+        'iran-developpements-politiques': 'politique.svg',
+        'economie-iran-2026': 'economie.svg',
+        'patrimoine-culturel-iran': 'culture.svg',
+        'technologie-innovation-iran': 'technologie.svg',
+        'sports-champions-iran': 'sports.svg',
+        'prix-petrole-iran': 'petrole.svg',
+        'tourisme-iran-destination': 'tourisme.svg',
+        'education-reformes-universites': 'education.svg',
+        'environnement-initiatives-vertes': 'environnement.svg'
+    };
+    return imageMap[slug] ? `/images/${imageMap[slug]}` : '/images/placeholder.svg';
+}
+
+/**
  * Affiche les articles dynamiquement dans les deux sections
  */
 function displayArticles(articles) {
@@ -78,23 +97,17 @@ function displayArticles(articles) {
     grid1.innerHTML = '';
     grid2.innerHTML = '';
     
-    // Ajouter les articles à la première grille (limite 3)
+    // Afficher TOUS les articles publiés
     const articlesLaUne = articles.slice(0, 3);
     articlesLaUne.forEach(article => {
         const articleHTML = createArticleElement(article);
         grid1.innerHTML += articleHTML;
     });
     
-    // Ajouter les articles à la deuxième grille (à partir du 4ème, limite 3)
-    const dernierMinute = articles.slice(3, 6);
+    // Afficher le reste dans la 2e section
+    const dernierMinute = articles.slice(3);
     if (dernierMinute.length > 0) {
         dernierMinute.forEach(article => {
-            const articleHTML = createArticleElement(article);
-            grid2.innerHTML += articleHTML;
-        });
-    } else {
-        // Si moins de 6 articles, remplir la 2e section avec les mêmes
-        articlesLaUne.forEach(article => {
             const articleHTML = createArticleElement(article);
             grid2.innerHTML += articleHTML;
         });
@@ -109,11 +122,12 @@ function displayArticles(articles) {
 function createArticleElement(article) {
     const formattedDate = formatDate(article.date_creation);
     const articleURL = getArticleDateURL(article);
-    const altText = `Article: ${escapeHtml(article.titre)} - Publié par ${escapeHtml(article.auteur)}`;
+    const articleImage = getArticleImage(article.slug);
+    const altText = `${escapeHtml(article.titre)} - Publié par ${escapeHtml(article.auteur)}`;
     
     return `
         <article>
-            <img src="/images/placeholder.svg" alt="${altText}" class="article-image">
+            <img src="${articleImage}" alt="${altText}" class="article-image">
             <div class="article-content">
                 <h3><a href="${articleURL}">${escapeHtml(article.titre)}</a></h3>
                 <div class="article-meta">

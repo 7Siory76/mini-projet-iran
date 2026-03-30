@@ -1,0 +1,16 @@
+<svg width="400" height="250" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="250" fill="#2c1810"/>
+  <!-- Motifs persans géométriques -->
+  <circle cx="200" cy="125" r="100" fill="none" stroke="#d4af37" stroke-width="3"/>
+  <circle cx="200" cy="125" r="80" fill="none" stroke="#d4af37" stroke-width="2"/>
+  <circle cx="200" cy="125" r="60" fill="none" stroke="#d4af37" stroke-width="2"/>
+  
+  <!-- Étoiles décoratives -->
+  <polygon points="200,125 206,135 217,135 208,142 214,152 200,146 186,152 192,142 183,135 194,135" fill="#d4af37"/>
+  <polygon points="130,70 134,78 143,78 136,84 140,92 130,86 120,92 124,84 117,78 126,78" fill="#d4af37"/>
+  <polygon points="270,70 274,78 283,78 276,84 280,92 270,86 260,92 264,84 257,78 266,78" fill="#d4af37"/>
+  <polygon points="130,180 134,188 143,188 136,194 140,202 130,196 120,202 124,194 117,188 126,188" fill="#d4af37"/>
+  <polygon points="270,180 274,188 283,188 276,194 280,202 270,196 260,202 264,194 257,188 266,188" fill="#d4af37"/>
+  
+  <text x="200" y="240" font-size="24" font-weight="bold" text-anchor="middle" fill="#d4af37" font-family="Arial">Patrimoine</text>
+</svg>
