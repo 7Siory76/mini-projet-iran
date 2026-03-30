@@ -1,17 +1,21 @@
 <?php
-// CORS Headers FIRST - before any output
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 header('Content-Type: application/json; charset=utf-8');
 
-// Handle CORS preflight
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit();
 }
 
 try {
+    $id = isset($_GET['id']) ? (int)$_GET['id'] : null;
+    
+    if (!$id) {
+        throw new Exception('ID requis');
+    }
+
     $host = getenv('POSTGRES_HOST') ?: 'db';
     $db = getenv('POSTGRES_DB') ?: 'backoffice_db';
     $user = getenv('POSTGRES_USER') ?: 'backoffice_user';
@@ -22,33 +26,23 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $query = $pdo->prepare('
-        SELECT id, titre, slug, contenu, contenu_brut, auteur, date_creation, statut 
+        SELECT id, titre, slug, contenu, contenu_brut, auteur, date_creation, date_modification, statut 
         FROM articles 
-        WHERE statut = :statut 
-        ORDER BY date_creation DESC
+        WHERE id = :id AND statut = :statut
     ');
-    $query->execute([':statut' => 'publie']);
-    $articles = $query->fetchAll(PDO::FETCH_ASSOC);
+    $query->execute([':id' => $id, ':statut' => 'publie']);
+    $article = $query->fetch(PDO::FETCH_ASSOC);
 
-    echo json_encode([
-        'success' => true,
-        'data' => $articles,
-        'count' => count($articles)
-    ]);
+    if (!$article) {
+        http_response_code(404);
+        echo json_encode(['success' => false, 'error' => 'Article not found']);
+        exit();
+    }
 
-} catch (PDOException $e) {
-    http_response_code(500);
-    echo json_encode([
-        'success' => false,
-        'error' => 'Database Error',
-        'message' => $e->getMessage()
-    ]);
+    echo json_encode(['success' => true, 'data' => $article]);
+
 } catch (Exception $e) {
     http_response_code(500);
-    echo json_encode([
-        'success' => false,
-        'error' => 'Server Error',
-        'message' => $e->getMessage()
-    ]);
+    echo json_encode(['success' => false, 'error' => $e->getMessage()]);
 }
 ?>

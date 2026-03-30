@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Iran Actualités - Toute l'actualité de l'Iran">
+    <meta name="keywords" content="Iran, actualités, news">
+    <meta name="author" content="Iran Actualités">
+    <title>Article - Iran Actualités</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <h1>IRAN ACTUALITÉS</h1>
+            <p class="tagline">L'actualité de l'Iran en continu</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" class="nav-link">Accueil</a></li>
+            <li><a href="index.html#articles-la-une" class="nav-link">À la une</a></li>
+            <li><a href="index.html#derniere-minute" class="nav-link">Dernière minute</a></li>
+            <li><a href="#" class="nav-link">Contact</a></li>
+            <li><a href="#" class="nav-link">À propos</a></li>
+        </ul>
+    </nav>
+
+    <main id="article-detail">
+        <div class="article-detail-container">
+            <div id="article-loading" class="loading">Chargement de l'article...</div>
+            <article id="article-content" style="display: none;">
+                <img id="article-image" src="/images/placeholder.svg" alt="" class="detail-image">
+                <h1 id="article-title"></h1>
+                <div class="detail-meta">
+                    <span id="article-date"></span>
+                    <span>•</span>
+                    <span id="article-author"></span>
+                </div>
+                <div id="article-body" class="article-body"></div>
+                <a href="index.html" class="back-link">← Retour aux actualités</a>
+            </article>
+            <div id="article-error" style="display: none; color: #d32f2f; text-align: center;">
+                <p>Impossible de charger cet article.</p>
+                <a href="index.html" class="back-link">Retour à l'accueil</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Iran Actualités. Tous droits réservés.</p>
+    </footer>
+
+    <script src="js/detail.js"></script>
+</body>
+</html>
