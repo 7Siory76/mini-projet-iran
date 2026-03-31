@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../src/Database/Connection.php';
 
+
 use App\Database\Connection;
 
 function slugify(string $text): string

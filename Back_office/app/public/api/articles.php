@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 try {
-    $host = getenv('POSTGRES_HOST') ?: 'db';
+    $host = getenv('POSTGRES_HOST') ?: 'backoffice_db';
     $db = getenv('POSTGRES_DB') ?: 'backoffice_db';
     $user = getenv('POSTGRES_USER') ?: 'backoffice_user';
     $password = getenv('POSTGRES_PASSWORD') ?: 'backoffice_pass';
