@@ -122,8 +122,14 @@ function displayArticles(articles) {
 function createArticleElement(article) {
     const formattedDate = formatDate(article.date_creation);
     const articleURL = getArticleDateURL(article);
-    const articleImage = getArticleImage(article.slug);
     const altText = `${escapeHtml(article.titre)} - Publié par ${escapeHtml(article.auteur)}`;
+    
+    // Extraire l'image du contenu si elle existe
+    let articleImage = getArticleImage(article.slug);
+    const imgMatch = article.contenu.match(/<img[^>]+src=["']([^"']+)["']/);
+    if (imgMatch && imgMatch[1]) {
+        articleImage = imgMatch[1];
+    }
     
     return `
         <article>
