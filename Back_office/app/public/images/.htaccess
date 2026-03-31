@@ -1,0 +1,36 @@
+# Images folder optimization for Google Search Console
+
+<IfModule mod_headers.c>
+    # Set proper MIME types for common image formats
+    Header set Content-Type "image/jpeg" .jpg
+    Header set Content-Type "image/jpeg" .jpeg
+    Header set Content-Type "image/png" .png
+    Header set Content-Type "image/gif" .gif
+    Header set Content-Type "image/webp" .webp
+    Header set Content-Type "image/svg+xml" .svg
+
+    # Long-term caching for images (safe because filenames include timestamps)
+    Header set Cache-Control "public, max-age=31536000, immutable"
+
+    # Tell Google this is an image asset (SEO)
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 year"
+</IfModule>
+
+# Block direct access to the images directory, allow only image files
+<FilesMatch "^[^\.].*\.(jpg|jpeg|png|gif|webp|svg)$">
+    Allow from all
+</FilesMatch>
+
+# Deny everything else in this directory
+<FilesMatch "\.php$">
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.htaccess$">
+    Deny from all
+</FilesMatch>

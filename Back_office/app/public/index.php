@@ -295,8 +295,8 @@ $articles = $statement->fetchAll();
     <?php endif; ?>
 
     <div class="topbar">
-        <a class="btn" href="/?action=new">+ Nouvel article</a>
-        <a class="btn secondary" href="/">Liste des articles</a>
+        <a class="btn" href="/admin/new">+ Nouvel article</a>
+        <a class="btn secondary" href="/admin/">Liste des articles</a>
     </div>
 
     <?php if ($action === 'new' || $action === 'edit'): ?>
@@ -395,9 +395,9 @@ $articles = $statement->fetchAll();
                     <td><?= htmlspecialchars((string) $article['date_creation']) ?></td>
                     <td><?= htmlspecialchars((string) $article['date_modification']) ?></td>
                     <td>
-                        <a href="/?action=view&slug=<?= urlencode($article['slug']) ?>">Voir</a>
+                        <a href="/article/<?= htmlspecialchars($article['slug']) ?>">Voir</a>
                         |
-                        <a href="/?action=edit&id=<?= (int) $article['id'] ?>">Modifier</a>
+                        <a href="/admin/edit/<?= (int) $article['id'] ?>">Modifier</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
