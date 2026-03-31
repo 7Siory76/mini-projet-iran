@@ -1,0 +1,31 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/php-apache/Dockerfile
+    container_name: backoffice_app
+    ports:
+      - "${APP_PORT:-8080}:80"
+    volumes:
+      - ./app:/var/www/html
+    depends_on:
+      - db
+    env_file:
+      - .env
+
+  db:
+    image: postgres:16-alpine
+    container_name: backoffice_db
+    restart: unless-stopped
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-backoffice_db}
+      POSTGRES_USER: ${POSTGRES_USER:-backoffice_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-backoffice_pass}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d
+
+volumes:
+  postgres_data:

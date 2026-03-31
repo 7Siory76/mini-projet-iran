@@ -1,0 +1,30 @@
+RewriteEngine On
+RewriteBase /
+
+# Canonical redirects: old query URLs -> clean URLs
+RewriteCond %{THE_REQUEST} \s/+\?action=view&slug=([a-z0-9-]+)\s [NC]
+RewriteRule ^$ /article/%1? [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+\?action=edit&id=([0-9]+)\s [NC]
+RewriteRule ^$ /admin/edit/%1? [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+\?action=new\s [NC]
+RewriteRule ^$ /admin/new? [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+\?action=list\s [NC]
+RewriteRule ^$ /admin/? [R=301,L]
+
+# Keep existing files/directories untouched
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Clean URL routes
+RewriteRule ^article/([a-z0-9-]+)/?$ index.php?action=view&slug=$1 [QSA,L]
+RewriteRule ^admin/new/?$ index.php?action=new [QSA,L]
+RewriteRule ^admin/edit/([0-9]+)/?$ index.php?action=edit&id=$1 [QSA,L]
+RewriteRule ^admin/?$ index.php?action=list [QSA,L]
+
+# Default route
+RewriteRule ^$ index.php?action=list [QSA,L]
+RewriteRule ^ index.php [QSA,L]
