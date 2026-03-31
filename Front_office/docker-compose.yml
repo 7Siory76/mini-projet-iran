@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: docker/php-apache/Dockerfile
+    container_name: frontoffice_web
+    ports:
+      - "${FRONT_PORT:-3000}:80"
+    volumes:
+      - ./:/var/www/html
+    restart: unless-stopped
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT:-development}
+
+

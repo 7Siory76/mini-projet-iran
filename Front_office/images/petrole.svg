@@ -1,0 +1,9 @@
+<svg width="400" height="250" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="250" fill="#f0e68c"/>
+  <!-- Goutte de pétrole -->
+  <path d="M 200 40 Q 180 80, 180 120 Q 180 160, 200 180 Q 220 160, 220 120 Q 220 80, 200 40 Z" fill="#1a1a1a"/>
+  <!-- Graphique prix -->
+  <polyline points="50,200 100,180 150,160 200,170 250,140 300,155 350,120" stroke="#ff4500" stroke-width="3" fill="none"/>
+  <line x1="50" y1="210" x2="350" y2="210" stroke="#333" stroke-width="2"/>
+  <text x="200" y="240" font-size="24" font-weight="bold" text-anchor="middle" fill="#1a1a1a" font-family="Arial">Prix du Pétrole</text>
+</svg>

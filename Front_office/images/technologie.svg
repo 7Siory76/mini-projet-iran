@@ -1,0 +1,15 @@
+<svg width="400" height="250" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="250" fill="#0a1628"/>
+  <!-- Circuit électronique -->
+  <circle cx="200" cy="125" r="50" fill="none" stroke="#00d4ff" stroke-width="2"/>
+  <circle cx="150" cy="100" r="8" fill="#00d4ff"/>
+  <circle cx="250" cy="100" r="8" fill="#00d4ff"/>
+  <circle cx="150" cy="150" r="8" fill="#00d4ff"/>
+  <circle cx="250" cy="150" r="8" fill="#00d4ff"/>
+  <line x1="150" y1="100" x2="200" y2="125" stroke="#00d4ff" stroke-width="2"/>
+  <line x1="250" y1="100" x2="200" y2="125" stroke="#00d4ff" stroke-width="2"/>
+  <line x1="150" y1="150" x2="200" y2="125" stroke="#00d4ff" stroke-width="2"/>
+  <line x1="250" y1="150" x2="200" y2="125" stroke="#00d4ff" stroke-width="2"/>
+  <circle cx="200" cy="125" r="6" fill="#00d4ff"/>
+  <text x="200" y="220" font-size="28" font-weight="bold" text-anchor="middle" fill="#00d4ff" font-family="Arial">Innovation Tech</text>
+</svg>

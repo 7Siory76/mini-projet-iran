@@ -1,0 +1,14 @@
+<svg width="400" height="250" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="250" fill="#e8f5e9"/>
+  <!-- Feuille géante -->
+  <path d="M 200 40 Q 160 90, 160 140 Q 160 180, 200 200 Q 240 180, 240 140 Q 240 90, 200 40 Z" fill="#228b22" stroke="#1b5e20" stroke-width="2"/>
+  <!-- Nervures -->
+  <line x1="200" y1="40" x2="200" y2="200" stroke="#1b5e20" stroke-width="2"/>
+  <path d="M 200 60 Q 180 70, 160 80" stroke="#1b5e20" stroke-width="1.5" fill="none"/>
+  <path d="M 200 90 Q 180 95, 160 100" stroke="#1b5e20" stroke-width="1.5" fill="none"/>
+  <path d="M 200 120 Q 180 120, 160 130" stroke="#1b5e20" stroke-width="1.5" fill="none"/>
+  <path d="M 200 60 Q 220 70, 240 80" stroke="#1b5e20" stroke-width="1.5" fill="none"/>
+  <path d="M 200 90 Q 220 95, 240 100" stroke="#1b5e20" stroke-width="1.5" fill="none"/>
+  <path d="M 200 120 Q 220 120, 240 130" stroke="#1b5e20" stroke-width="1.5" fill="none"/>
+  <text x="200" y="235" font-size="28" font-weight="bold" text-anchor="middle" fill="#228b22" font-family="Arial">Environnement</text>
+</svg>
