@@ -50,3 +50,6 @@ docker compose down
 - User par défaut : `backoffice_user`
 - Port web : `8080`
 - Port PostgreSQL : `5432`
+
+
+psql -U backoffice_user -d backoffice_db

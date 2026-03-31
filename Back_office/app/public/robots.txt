@@ -1,0 +1,32 @@
+# Back Office Articles - SEO Configuration for Google & Bing
+
+User-agent: *
+Allow: /
+Allow: /article/
+Allow: /images/
+
+# Disallow admin pages
+Disallow: /admin/new
+Disallow: /admin/edit
+Disallow: /?action=upload-image
+Disallow: /?action=new
+Disallow: /?action=edit
+
+# Block access to sensitive files
+Disallow: /.env
+Disallow: /.git/
+Disallow: /config/
+Disallow: /src/
+Disallow: /database/
+
+# Slow down aggressive crawlers (optional)
+User-agent: AhrefsBot
+User-agent: SemrushBot
+User-agent: DotBot
+Crawl-Delay: 10
+
+# Sitemap location for Google, Bing, Yandex
+Sitemap: https://localhost:8080/sitemap.xml
+
+# Allow crawling of commonly blocked resources
+Allow: /.well-known/
