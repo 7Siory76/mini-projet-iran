@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#fce4ec"/>
+  <circle cx="200" cy="100" r="35" fill="#e91e63"/>
+  <polygon points="200,150 150,220 250,220" fill="#f06292"/>
+  <rect x="170" y="230" width="60" height="40" fill="#ec407a"/>
+  <circle cx="150" cy="90" r="8" fill="#fff"/>
+  <circle cx="250" cy="90" r="8" fill="#fff"/>
+  <text x="200" y="280" font-size="20" text-anchor="middle" fill="#333">Culture</text>
+</svg>

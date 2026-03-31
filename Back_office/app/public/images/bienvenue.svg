@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#e3f2fd"/>
+  <path d="M 200 50 L 150 150 L 250 150 Z" fill="#2196f3"/>
+  <rect x="160" y="150" width="80" height="80" fill="#64b5f6"/>
+  <rect x="180" y="170" width="15" height="20" fill="#1976d2"/>
+  <rect x="205" y="170" width="15" height="20" fill="#1976d2"/>
+  <polygon points="200,210 195,225 205,225" fill="#1976d2"/>
+  <text x="200" y="280" font-size="20" text-anchor="middle" fill="#333">Bienvenue</text>
+</svg>

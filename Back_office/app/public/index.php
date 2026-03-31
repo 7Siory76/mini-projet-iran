@@ -122,6 +122,7 @@ if ($action === 'upload-image' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         jsonResponse(['ok' => false, 'message' => 'Format non supporté.'], 400);
     }
 
+    // Dossier back office (mapé via Docker à ./shared_images)
     $imageDirectory = __DIR__ . '/images';
     if (!is_dir($imageDirectory) && !mkdir($imageDirectory, 0777, true) && !is_dir($imageDirectory)) {
         jsonResponse(['ok' => false, 'message' => 'Impossible de créer le dossier images.'], 500);
@@ -412,7 +413,8 @@ $articles = $statement->fetchAll();
         const form = document.getElementById('article-form');
 
         document.querySelectorAll('[data-cmd]').forEach((button) => {
-            button.addEventListener('click', () => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
                 const cmd = button.getAttribute('data-cmd');
                 const value = button.getAttribute('data-value');
                 document.execCommand(cmd, false, value);

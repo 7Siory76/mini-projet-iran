@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#fff3e0"/>
+  <rect x="60" y="200" width="40" height="60" fill="#ff9800"/>
+  <rect x="130" y="150" width="40" height="110" fill="#ffa726"/>
+  <rect x="200" y="100" width="40" height="160" fill="#ffb74d"/>
+  <rect x="270" y="130" width="40" height="130" fill="#ff9800"/>
+  <line x1="50" y1="260" x2="330" y2="260" stroke="#333" stroke-width="2"/>
+  <text x="200" y="280" font-size="20" text-anchor="middle" fill="#333">Économie</text>
+</svg>

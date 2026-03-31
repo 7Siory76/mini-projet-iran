@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#e1f5fe"/>
+  <polygon points="200,50 120,180 280,180" fill="#01579b"/>
+  <circle cx="120" cy="180" r="20" fill="#0277bd"/>
+  <circle cx="200" cy="140" r="25" fill="#ffd600"/>
+  <rect x="60" y="200" width="280" height="50" fill="#4dd0e1"/>
+  <rect x="100" y="250" width="200" height="30" fill="#ffb300"/>
+  <text x="200" y="285" font-size="16" text-anchor="middle" fill="#333">Tourisme</text>
+</svg>
