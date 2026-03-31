@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!-- Fond -->
+  <rect width="400" height="400" fill="#f5f0ff"/>
+  
+  <!-- Tour de contrôle militaire stylisée -->
+  <rect x="180" y="100" width="40" height="80" fill="#667eea" opacity="0.6" stroke="#667eea" stroke-width="2"/>
+  <polygon points="200,100 160,60 240,60" fill="#667eea" opacity="0.6" stroke="#667eea" stroke-width="2"/>
+  
+  <!-- Symboles de surveillance -->
+  <circle cx="200" cy="140" r="25" fill="none" stroke="#ff6b6b" stroke-width="2"/>
+  <line x1="200" y1="115" x2="200" y2="165" stroke="#ff6b6b" stroke-width="1" opacity="0.5"/>
+  <line x1="175" y1="140" x2="225" y2="140" stroke="#ff6b6b" stroke-width="1" opacity="0.5"/>
+  <circle cx="200" cy="140" r="4" fill="#ff6b6b"/>
+  
+  <!-- Radars -->
+  <circle cx="100" cy="220" r="30" fill="none" stroke="#4ecdc4" stroke-width="2" opacity="0.7"/>
+  <circle cx="100" cy="220" r="20" fill="none" stroke="#4ecdc4" stroke-width="1" opacity="0.5"/>
+  
+  <circle cx="300" cy="220" r="30" fill="none" stroke="#4ecdc4" stroke-width="2" opacity="0.7"/>
+  <circle cx="300" cy="220" r="20" fill="none" stroke="#4ecdc4" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Lignes de communication -->
+  <line x1="100" y1="220" x2="200" y2="140" stroke="#667eea" stroke-width="1" opacity="0.6" stroke-dasharray="3,3"/>
+  <line x1="300" y1="220" x2="200" y2="140" stroke="#667eea" stroke-width="1" opacity="0.6" stroke-dasharray="3,3"/>
+  
+  <!-- Titre -->
+  <text x="200" y="330" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">Équilibre</text>
+  <text x="200" y="348" text-anchor="middle" font-size="12" fill="#666">Militaire Régional</text>
+</svg>

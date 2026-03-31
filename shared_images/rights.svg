@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!-- Fond -->
+  <rect width="400" height="400" fill="#fff0f5"/>
+  
+  <!-- Symboles de neutralité et justice -->
+  <!-- Balance de la justice -->
+  <line x1="200" y1="60" x2="200" y2="120" stroke="#667eea" stroke-width="4"/>
+  <circle cx="200" cy="60" r="10" fill="#667eea"/>
+  
+  <!-- Plateau gauche -->
+  <rect x="140" y="115" width="90" height="15" fill="#667eea" opacity="0.7" rx="5"/>
+  
+  <!-- Plateau droit -->
+  <rect x="170" y="115" width="90" height="15" fill="#764ba2" opacity="0.7" rx="5"/>
+  
+  <!-- Symboles de libertés -->
+  <rect x="100" y="180" width="30" height="100" fill="#f0f4ff" stroke="#667eea" stroke-width="2" rx="5"/>
+  <text x="115" y="200" font-size="16" text-anchor="middle">✓</text>
+  <text x="115" y="220" font-size="16" text-anchor="middle">✓</text>
+  <text x="115" y="240" font-size="16" text-anchor="middle">✓</text>
+  <text x="115" y="260" font-size="16" text-anchor="middle">✓</text>
+  
+  <!-- Cœur -->
+  <path d="M 200 200 L 230 180 Q 240 170 250 180 Q 260 190 250 210 L 200 250 L 150 210 Q 140 190 150 180 Q 160 170 170 180 Z" fill="#ff6b6b" opacity="0.7"/>
+  
+  <!-- Symbole de protection -->
+  <rect x="270" y="180" width="30" height="100" fill="#f0f4ff" stroke="#764ba2" stroke-width="2" rx="5"/>
+  <text x="285" y="200" font-size="16" text-anchor="middle">🛡</text>
+  <text x="285" y="220" font-size="16" text-anchor="middle">🛡</text>
+  <text x="285" y="240" font-size="16" text-anchor="middle">🛡</text>
+  <text x="285" y="260" font-size="16" text-anchor="middle">🛡</text>
+  
+  <!-- Titre -->
+  <text x="200" y="330" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">Droits Humains</text>
+  <text x="200" y="348" text-anchor="middle" font-size="12" fill="#666">Libertés &amp; Justice</text>
+</svg>

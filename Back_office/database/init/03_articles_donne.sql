@@ -1,152 +1,211 @@
--- Données d'exemple pour la table articles
--- Attention : statut doit être 'publie' (sans accent) ou 'brouillon' selon la contrainte CHECK
+-- Données informatives sur la sécurité et géopolitique en Iran
+-- Contenu éducatif et factuel
 
 INSERT INTO articles (titre, slug, contenu, contenu_brut, auteur, statut)
 VALUES (
-    'Bienvenue dans notre blog',
-    'bienvenue-blog',
-    '<img src="/images/bienvenue.svg" alt="Bienvenue" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
-    <h1>Bienvenue</h1>
-    <p>Ceci est un article <strong>important</strong> avec du <em>texte en italique</em>.</p>
-    <p style="color: blue;">Un paragraphe en bleu.</p>
-    <p>Un texte <span style="background-color: yellow;">surligné</span> et du <strong style="color: red;">gras rouge</strong>.</p>',
-    'Bienvenue dans notre blog. Ceci est un article important avec du texte en italique. Un paragraphe en bleu. Un texte surligné et du gras rouge.',
-    'Jean Dupont',
+    'Structure géopolitique du Moyen-Orient et rôle stratégique de l''Iran',
+    'geopolitique-iran-moyen-orient',
+    '<img src="/images/conflict.svg" alt="Géopolitique" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
+    <h1>Position géopolitique de l''Iran</h1>
+    <p>L''Iran occupe une position stratégique cruciale au Moyen-Orient, à la croisée de routes commerciales majeures et de zones d''influence régionales.</p>
+    <p><strong>Éléments clés:</strong></p>
+    <ul>
+    <li>Localisation entre le Golfe Persique et la Mer Caspienne</li>
+    <li>Population de plus de 88 millions d''habitants</li>
+    <li>Ressources énergétiques parmi les plus importantes au monde</li>
+    <li>Influence diplomatique régionale significative</li>
+    </ul>
+    <p>Cette position explique l''intérêt géopolitique constant des puissances mondiales pour la région.</p>',
+    'Structure géopolitique du Moyen-Orient et rôle stratégique de l''Iran. Iran occupe une position stratégique cruciale.',
+    'Dr. Amir Rezaei',
     'publie'
 ) ON CONFLICT DO NOTHING;
 
 INSERT INTO articles (titre, slug, contenu, contenu_brut, auteur, statut)
 VALUES (
-    'Iran: Développements politiques majeurs',
-    'iran-developpements-politiques',
-    '<img src="/images/politique.svg" alt="Politique Iran" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
-    <h1>Développements politiques en Iran</h1>
-    <p>Les dernières évolutions politiques du pays marquent un tournant important.</p>
-    <p><strong>Points clés:</strong></p>
-    <ul><li>Réformes institutionnelles</li><li>Nouveau gouvernement</li><li>Mesures économiques</li></ul>',
-    'Iran: Développements politiques majeurs. Les dernières évolutions politiques du pays marquent un tournant important.',
-    'Marie Dubois',
+    'Conflits régionaux et tensions diplomatiques en Iran',
+    'conflits-tensions-diplomatiques',
+    '<img src="/images/diplomacy.svg" alt="Diplomatie" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
+    <h1>Tensions régionales et enjeux diplomatiques</h1>
+    <p>L''Iran fait face à plusieurs défis géopolitiques complexes impliquant divers acteurs régionaux et internationaux.</p>
+    <p><strong>Enjeux principaux:</strong></p>
+    <ul>
+    <li>Tensions avec les pays du Golfe Persique</li>
+    <li>Différends avec les puissances occidentales</li>
+    <li>Influence dans les conflits régionaux</li>
+    <li>Négociations nucléaires et sanctions internationales</li>
+    <li>Alliances stratégiques régionales</li>
+    </ul>
+    <p>Ces tensions reflètent des intérêts géopolitiques divergents et des questions de sécurité régionale complexes.</p>',
+    'Conflits régionaux et tensions diplomatiques en Iran. Iran fait face à plusieurs défis géopolitiques complexes.',
+    'Prof. Hassan Motamedi',
     'publie'
 ) ON CONFLICT DO NOTHING;
 
 INSERT INTO articles (titre, slug, contenu, contenu_brut, auteur, statut)
 VALUES (
-    'Économie iranienne: Analyse et prévisions',
-    'economie-iran-2026',
-    '<img src="/images/economie.svg" alt="Économie Iran" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
-    <h1>État de l''économie iranienne en 2026</h1>
-    <p>Une analyse approfondie des indicateurs économiques actuels.</p>
-    <p>Les exports, les investissements et les réformes fiscales sont au cœur des enjeux.</p>',
-    'Économie iranienne: Analyse et prévisions. Une analyse approfondie des indicateurs économiques actuels.',
-    'Admin',
+    'Impact humanitaire des crises: Déplacements de populations et réfugiés',
+    'impact-humanitaire-refugies',
+    '<img src="/images/humanitarian.svg" alt="Humanitaire" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
+    <h1>Crise humanitaire et refugiés</h1>
+    <p>Les conflits régionaux ont entraîné des déplacements massifs de populations et créé une crise humanitaire significative.</p>
+    <p><strong>Données:</strong></p>
+    <ul>
+    <li>Millions de réfugiés régionaux en Iran (Irak, Afghanistan, Syrie)</li>
+    <li>Accès limité à l''eau potable dans certaines régions</li>
+    <li>Défis d''accès aux services de santé</li>
+    <li>Besoins alimentaires urgents</li>
+    <li>Éducation des enfants déracinés</li>
+    </ul>
+    <p>Les organisations humanitaires internationales travaillent pour fournir une aide d''urgence aux populations vulnérables.</p>',
+    'Impact humanitaire des crises: Déplacements de populations et réfugiés. Conflits régionaux ont entraîné des déplacements.',
+    'Dr. Farida Tehrani',
     'publie'
 ) ON CONFLICT DO NOTHING;
 
 INSERT INTO articles (titre, slug, contenu, contenu_brut, auteur, statut)
 VALUES (
-    'Culture et patrimoine: Les trésors de l''Iran',
-    'patrimoine-culturel-iran',
-    '<img src="/images/culture.svg" alt="Patrimoine Iran" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
-    <h1>Les trésors culturels de l''Iran</h1>
-    <p>Découvrez l''histoire riche et le patrimoine culturel du pays.</p>
-    <p>Du patrimoine architectural ancien aux traditions modernes, l''Iran offre une diversité culturelle remarquable.</p>',
-    'Culture et patrimoine: Les trésors de l''Iran. Découvrez l''histoire riche et le patrimoine culturel du pays.',
-    'Mohammad Hassan',
+    'Sanctions économiques: Impacts sur le développement',
+    'sanctions-economiques-iran',
+    '<img src="/images/economy.svg" alt="Sanctions" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
+    <h1>Sanctions internationales et économie iranienne</h1>
+    <p>Les sanctions économiques imposées à l''Iran ont des répercussions profondes sur l''économie et la vie quotidienne.</p>
+    <p><strong>Effets des sanctions:</strong></p>
+    <ul>
+    <li>Restrictions sur les exportations pétrolières</li>
+    <li>Limitations des échanges commerciaux</li>
+    <li>Défis d''accès aux technologies modernes</li>
+    <li>Inflation et instabilité monétaire</li>
+    <li>Impact sur les secteurs: santé, éducation, industrie</li>
+    </ul>
+    <p>Ces mesures affectent l''économie mais aussi les populations vulnérables et la qualité de vie.</p>',
+    'Sanctions économiques: Impacts sur le développement. Sanctions économiques imposées à l''Iran.',
+    'Dr. Karim Sharifi',
     'publie'
 ) ON CONFLICT DO NOTHING;
 
 INSERT INTO articles (titre, slug, contenu, contenu_brut, auteur, statut)
 VALUES (
-    'Dernier article en brouillon',
-    'article-brouillon',
-    '<h1>Cet article n''est pas encore publié</h1>
-    <p>Il s''agit d''un article en brouillon qui ne sera pas affiché sur le site public.</p>',
-    'Article en brouillon',
-    'Admin',
-    'brouillon'
-) ON CONFLICT DO NOTHING;
-
-INSERT INTO articles (titre, slug, contenu, contenu_brut, auteur, statut)
-VALUES (
-    'Technologie et innovation en Iran',
-    'technologie-innovation-iran',
-    '<img src="/images/technologie.svg" alt="Technologie Iran" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
-    <h1>L''essor technologique iranien</h1>
-    <p>L''Iran se positionne comme un acteur majeur de l''innovation technologique en Asie.</p>
-    <p>Des startups aux géants industriels, découvrez les projets révolutionnaires en cours.</p>
-    <ul><li>Intelligence artificielle</li><li>Énergies renouvelables</li><li>Biotechnologie</li></ul>',
-    'Technologie et innovation en Iran. L''Iran se positionne comme un acteur majeur de l''innovation technologique.',
-    'Reza Ahmadi',
+    'Forces militaires régionales et équilibre des pouvoirs',
+    'forces-militaires-equilibre',
+    '<img src="/images/military.svg" alt="Équilibre régional" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
+    <h1>Capacités militaires et équilibre régional</h1>
+    <p>L''équilibre militaire au Moyen-Orient joue un rôle crucial dans la dynamique régionale et la stabilité.</p>
+    <p><strong>Acteurs clés:</strong></p>
+    <ul>
+    <li>Forces conventionnelles régionales</li>
+    <li>Programmes de modernisation militaire</li>
+    <li>Participation à des coalitions régionales</li>
+    <li>Équilibre des forces et dissuasion</li>
+    <li>Implications pour la sécurité locale et internationale</li>
+    </ul>
+    <p>Cet équilibre délicat affecte les relations entre nations et les perspectives de stabilité régionale.</p>',
+    'Forces militaires régionales et équilibre des pouvoirs. Équilibre militaire au Moyen-Orient.',
+    'General Reza Ahmadi (Ret.)',
     'publie'
 ) ON CONFLICT DO NOTHING;
 
 INSERT INTO articles (titre, slug, contenu, contenu_brut, auteur, statut)
 VALUES (
-    'Sports: Les champions iraniens brillent sur la scène internationale',
-    'sports-champions-iran',
-    '<img src="/images/sports.svg" alt="Sports Champions" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
-    <h1>Victoires des athlètes iraniens</h1>
-    <p>Les sportifs iraniens continuent de remporter des succès remarquables aux compétitions internationales.</p>
-    <p><strong>Récents triomphes:</strong></p>
-    <ul><li>Lutte libre - Médailles d''or</li><li>Volley-ball féminin</li><li>Haltérophilie mondiale</li></ul>',
-    'Sports: Les champions iraniens brillent sur la scène internationale. Les sportifs iraniens continuent de remporter des succès',
-    'Fatima Tehrani',
+    'Technologie et cybersécurité dans les conflits modernes',
+    'technologie-cybersecurite',
+    '<img src="/images/cyber.svg" alt="Cybersécurité" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
+    <h1>La dimension technologique des conflits modernes</h1>
+    <p>Les conflits contemporains ne se limitent plus au domaine physique: la guerre technologique et la cybersécurité jouent un rôle croissant.</p>
+    <p><strong>Aspects clés:</strong></p>
+    <ul>
+    <li>Cyber-attaques et défense informatique</li>
+    <li>Désinformation et guerre informationnelle</li>
+    <li>Surveillance et renseignement numériques</li>
+    <li>Vulnérabilités des infrastructures critiques</li>
+    <li>Enjeux de souveraineté numérique</li>
+    </ul>
+    <p>L''Iran fait face à des menaces cyber significatives et investit également dans ses capacités de défense numérique.</p>',
+    'Technologie et cybersécurité dans les conflits modernes. Conflits contemporains impliquent la dimension technologique.',
+    'Dr. Farhad Tehrani',
     'publie'
 ) ON CONFLICT DO NOTHING;
 
 INSERT INTO articles (titre, slug, contenu, contenu_brut, auteur, statut)
 VALUES (
-    'Prix du pétrole: Impacts sur l''économie iranienne',
-    'prix-petrole-iran',
-    '<img src="/images/petrole.svg" alt="Prix Pétrole" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
-    <h1>Fluctuation des prix du pétrole</h1>
-    <p>Les variations du marché pétrolier mondial affectent directement l''économie iranienne.</p>
-    <p>Analysons les tendances actuelles et les prévisions pour les mois à venir.</p>
-    <p>Les revenus d''exportation, les investissements étrangers et la stabilité économique en dépendent largement.</p>',
-    'Prix du pétrole: Impacts sur l''économie iranienne. Les variations du marché pétrolier mondial affectent directement l''économie.',
-    'Dr. Karim Nasri',
+    'Droits humains et libertés civiles: Enjeux en Iran',
+    'droits-humains-libertés',
+    '<img src="/images/rights.svg" alt="Droits Humains" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
+    <h1>Situation des droits humains en Iran</h1>
+    <p>Les libertés civiles et les droits fondamentaux demeurent un sujet de préoccupation majeure pour les organisations internationales.</p>
+    <p><strong>Points de focus:</strong></p>
+    <ul>
+    <li>Liberté d''expression et de presse</li>
+    <li>Droits des minorités</li>
+    <li>Justice pénale et système judiciaire</li>
+    <li>Droits des femmes</li>
+    <li>Liberté d''association et de rassemblement</li>
+    </ul>
+    <p>Les organisations des Nations Unies et internationales supervisent l''évolution de ces questions critiques.</p>',
+    'Droits humains et libertés civiles: Enjeux en Iran. Libertés civiles et droits fondamentaux.',
+    'Amnesty Iran',
     'publie'
 ) ON CONFLICT DO NOTHING;
 
 INSERT INTO articles (titre, slug, contenu, contenu_brut, auteur, statut)
 VALUES (
-    'Tourisme en Iran: Une destination émergente',
-    'tourisme-iran-destination',
-    '<img src="/images/tourisme.svg" alt="Tourisme Iran" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
-    <h1>L''Iran, destination touristique de choix</h1>
-    <p>L''augmentation du nombre de visiteurs internationaux confirm l''attrait touristique croissant de l''Iran.</p>
-    <p>Des mosquées historiques aux déserts spectaculaires, découvrez les attractions majeures.</p>
-    <p><strong>Sites incontournables:</strong></p>
-    <ul><li>Ispahan - La Perle de l''Orient</li><li>Shiraz - La ville des poètes</li><li>Persépolis - Site archéologique majeur</li></ul>',
-    'Tourisme en Iran: Une destination émergente. L''augmentation du nombre de visiteurs internationaux confirme l''attrait touristique.',
-    'Leila Khatami',
+    'Reconstruction post-conflit: Défis et perspectives',
+    'reconstruction-post-conflit',
+    '<img src="/images/reconstruction.svg" alt="Reconstruction" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
+    <h1>Reconstruction et stabilité régionale</h1>
+    <p>Après les décennies de tensions, la reconstruction et la stabilité deviennent des priorités stratégiques pour la région.</p>
+    <p><strong>Priorités de reconstruction:</strong></p>
+    <ul>
+    <li>Restauration des infrastructures</li>
+    <li>Retour et intégration des réfugiés</li>
+    <li>Relance économique et emploi</li>
+    <li>Réconciliation et coexistence</li>
+    <li>Investissements internationaux et partenariats</li>
+    </ul>
+    <p>Ces efforts nécessitent une coopération régionale et internationale soutenue pour assurer une paix durable.</p>',
+    'Reconstruction post-conflit: Défis et perspectives. Reconstruction et stabilité régionale.',
+    'Dr. Saeed Khalili',
     'publie'
 ) ON CONFLICT DO NOTHING;
 
 INSERT INTO articles (titre, slug, contenu, contenu_brut, auteur, statut)
 VALUES (
-    'Éducation: Réformes dans les universités iraniennes',
-    'education-reformes-universites',
-    '<img src="/images/education.svg" alt="Éducation Iran" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
-    <h1>Nouvelles orientations académiques</h1>
-    <p>Le système éducatif iranien connaît des transformations majeures visant l''excellence académique.</p>
-    <p>L''intégration de nouvelles technologies et la collaboration internationale ouvrent des horizons novateurs.</p>
-    <p>Les universités iraniennes renforcent leurs classements mondiaux et leurs partenariats stratégiques.</p>',
-    'Éducation: Réformes dans les universités iraniennes. Le système éducatif iranien connaît des transformations majeures.',
-    'Professor Hasan Zarif',
+    'Diplomatie et négociations: Vers la résolution des conflits',
+    'diplomatie-negotiations',
+    '<img src="/images/peace.svg" alt="Paix" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
+    <h1>Efforts diplomatiques pour la paix</h1>
+    <p>La diplomatie multilatérale et les négociations jouent un rôle central dans la résolution des tensions régionales et la promotion de la stabilité.</p>
+    <p><strong>Canaux diplomatiques clés:</strong></p>
+    <ul>
+    <li>Organismes internationaux (ONU, Ligue arabe)</li>
+    <li>Accords bilatéraux et multilatéraux</li>
+    <li>Initiatives de médiation régionale</li>
+    <li>Conférences de paix et pourparlers</li>
+    <li>Organisations régionales et alliances</li>
+    </ul>
+    <p>Les efforts pour trouver des solutions pacifiques aux litiges régionaux restent essentiels pour la stabilité et la prospérité future.</p>',
+    'Diplomatie et négociations: Vers la résolution des conflits. Diplomatie multilatérale pour la paix.',
+    'Ambassador Hassan Rouhani',
     'publie'
 ) ON CONFLICT DO NOTHING;
 
 INSERT INTO articles (titre, slug, contenu, contenu_brut, auteur, statut)
 VALUES (
-    'Environnement: initiatives vertes en Iran',
-    'environnement-initiatives-vertes',
-    '<img src="/images/environnement.svg" alt="Environnement Iran" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
-    <h1>Vers une Iran plus verte</h1>
-    <p>Le gouvernement lance des initiatives ambitieuses pour protéger l''environnement et lutter contre le changement climatique.</p>
-    <p>Plantations massives d''arbres, énergies renouvelables et réduction des émissions de carbone sont au programme.</p>
-    <p>Les réserves naturelles et les espèces menacées bénéficient également d''efforts de conservation renforcés.</p>',
-    'Environnement: initiatives vertes en Iran. Le gouvernement lance des initiatives ambitieuses pour protéger l''environnement.',
-    'Dr. Zainab Qajar',
+    'Ressources naturelles et enjeux environnementaux en temps de conflit',
+    'ressources-environnement-conflit',
+    '<img src="/images/environment.svg" alt="Environnement" style="width:100%;max-width:400px;border-radius:8px;margin-bottom:20px;">
+    <h1>Environnement et ressources naturelles</h1>
+    <p>Les conflits et les tensions géopolitiques ont des impacts significatifs sur l''environnement et la gestion des ressources naturelles.</p>
+    <p><strong>Enjeux environnementaux:</strong></p>
+    <ul>
+    <li>Pollution et dommages environnementaux des conflits</li>
+    <li>Gestion des ressources eau et pétrole</li>
+    <li>Émissions de carbone et changement climatique</li>
+    <li>Conservation de la biodiversité</li>
+    <li>Énergies renouvelables comme alternative</li>
+    </ul>
+    <p>La stabilité environnementale reste cruciale pour la durabilité économique et la qualité de vie de la population.</p>',
+    'Ressources naturelles et enjeux environnementaux en temps de conflit. Conflits ont des impacts sur l''environnement.',
+    'Dr. Nasrin Azadi',
     'publie'
 ) ON CONFLICT DO NOTHING;

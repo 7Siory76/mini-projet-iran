@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!-- Fond -->
+  <rect width="400" height="400" fill="#f5fff5"/>
+  
+  <!-- Soleil -->
+  <circle cx="350" cy="50" r="30" fill="#ffd700"/>
+  <line x1="350" y1="10" x2="350" y2="0" stroke="#ffd700" stroke-width="3"/>
+  <line x1="390" y1="50" x2="400" y2="50" stroke="#ffd700" stroke-width="3"/>
+  
+  <!-- Arbre gauche -->
+  <rect x="75" y="180" width="15" height="90" fill="#8B4513"/>
+  <circle cx="85" cy="160" r="50" fill="#228B22" opacity="0.7"/>
+  <circle cx="60" cy="150" r="35" fill="#228B22" opacity="0.7"/>
+  <circle cx="110" cy="150" r="35" fill="#228B22" opacity="0.7"/>
+  
+  <!-- Arbre droit -->
+  <rect x="310" y="180" width="15" height="90" fill="#8B4513"/>
+  <circle cx="320" cy="160" r="50" fill="#2d5016" opacity="0.7"/>
+  <circle cx="295" cy="150" r="35" fill="#2d5016" opacity="0.7"/>
+  <circle cx="345" cy="150" r="35" fill="#2d5016" opacity="0.7"/>
+  
+  <!-- Terre/Sol -->
+  <ellipse cx="200" cy="300" rx="150" ry="80" fill="#90EE90" opacity="0.6"/>
+  
+  <!-- Herbe -->
+  <path d="M 100 280 Q 110 270 120 280 Q 130 270 140 280" fill="none" stroke="#228B22" stroke-width="2" opacity="0.8"/>
+  <path d="M 260 280 Q 270 270 280 280 Q 290 270 300 280" fill="none" stroke="#228B22" stroke-width="2" opacity="0.8"/>
+  
+  <!-- Fleurs -->
+  <circle cx="150" cy="250" r="8" fill="#FF69B4" opacity="0.7"/>
+  <circle cx="145" cy="240" r="4" fill="#FFB6C1"/>
+  <circle cx="155" cy="240" r="4" fill="#FFB6C1"/>
+  <circle cx="150" cy="235" r="4" fill="#FFB6C1"/>
+  
+  <circle cx="250" cy="250" r="8" fill="#FF69B4" opacity="0.7"/>
+  <circle cx="245" cy="240" r="4" fill="#FFB6C1"/>
+  <circle cx="255" cy="240" r="4" fill="#FFB6C1"/>
+  <circle cx="250" cy="235" r="4" fill="#FFB6C1"/>
+  
+  <!-- Eau -->
+  <path d="M 180 320 Q 190 315 200 320 Q 210 325 220 320" fill="none" stroke="#4ecdc4" stroke-width="2"/>
+  <path d="M 190 330 Q 200 325 210 330 Q 220 335 230 330" fill="none" stroke="#4ecdc4" stroke-width="1.5" opacity="0.6"/>
+  
+  <!-- Titre -->
+  <text x="200" y="370" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">Environnement</text>
+</svg>

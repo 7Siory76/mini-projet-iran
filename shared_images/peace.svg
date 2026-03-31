@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!-- Fond -->
+  <rect width="400" height="400" fill="#f0fff5"/>
+  
+  <!-- Symbole de paix (colombe) -->
+  <circle cx="200" cy="120" r="35" fill="#4ecdc4" opacity="0.6"/>
+  
+  <!-- Corps de la colombe -->
+  <ellipse cx="200" cy="135" rx="20" ry="25" fill="#4ecdc4"/>
+  
+  <!-- Tête -->
+  <circle cx="200" cy="110" r="15" fill="#4ecdc4"/>
+  <circle cx="205" cy="108" r="3" fill="#333"/>
+  
+  <!-- Aile gauche -->
+  <path d="M 180 130 Q 140 120 130 160 Q 140 140 180 135" fill="#67e8dd" opacity="0.8"/>
+  
+  <!-- Aile droite -->
+  <path d="M 220 130 Q 260 120 270 160 Q 260 140 220 135" fill="#67e8dd" opacity="0.8"/>
+  
+  <!-- Branche d'olivier -->
+  <line x1="210" y1="108" x2="240" y2="90" stroke="#95e1d3" stroke-width="2"/>
+  <circle cx="225" cy="100" r="3" fill="#95e1d3"/>
+  <circle cx="235" cy="93" r="3" fill="#95e1d3"/>
+  
+  <!-- Rayons de lumière -->
+  <line x1="200" y1="60" x2="200" y2="40" stroke="#ffd700" stroke-width="2" opacity="0.7"/>
+  <line x1="240" y1="70" x2="255" y2="55" stroke="#ffd700" stroke-width="2" opacity="0.7"/>
+  <line x1="160" y1="70" x2="145" y2="55" stroke="#ffd700" stroke-width="2" opacity="0.7"/>
+  
+  <!-- Symboles de paix en bas -->
+  <circle cx="150" cy="280" r="30" fill="none" stroke="#667eea" stroke-width="2"/>
+  <line x1="150" y1="253" x2="150" y2="307" stroke="#667eea" stroke-width="1.5" opacity="0.6"/>
+  <line x1="120" y1="280" x2="180" y2="280" stroke="#667eea" stroke-width="1.5" opacity="0.6"/>
+  <line x1="130" y1="260" x2="170" y2="300" stroke="#667eea" stroke-width="1.5" opacity="0.6"/>
+  <line x1="170" y1="260" x2="130" y2="300" stroke="#667eea" stroke-width="1.5" opacity="0.6"/>
+  
+  <circle cx="250" cy="280" r="30" fill="none" stroke="#764ba2" stroke-width="2"/>
+  <polygon points="250,250 270,300 230,300" fill="none" stroke="#764ba2" stroke-width="1.5" opacity="0.6"/>
+  
+  <!-- Titre -->
+  <text x="200" y="345" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">Paix</text>
+  <text x="200" y="363" text-anchor="middle" font-size="12" fill="#666">Stabilité Durable</text>
+</svg>

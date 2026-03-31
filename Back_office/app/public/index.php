@@ -2,6 +2,21 @@
 
 declare(strict_types=1);
 
+session_start();
+
+// Vérification de connexion - rediriger vers login si pas authentifié
+if (!isset($_SESSION['user_id'])) {
+    header('Location: /login.php');
+    exit;
+}
+
+// Gestion de la déconnexion
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header('Location: /login.php');
+    exit;
+}
+
 require_once __DIR__ . '/../src/Database/Connection.php';
 
 
@@ -260,7 +275,74 @@ $articles = $statement->fetchAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Back Office Articles</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 2rem; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: #f5f5f5;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .navbar h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-info {
+            text-align: right;
+        }
+        
+        .user-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .user-email {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.5);
+            border-color: white;
+        }
+        
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 2rem;
+        }
+        
+        body { margin: 0; }
         table { border-collapse: collapse; width: 100%; }
         th, td { border: 1px solid #ddd; padding: 10px; }
         th { background: #f2f2f2; text-align: left; }
@@ -269,7 +351,7 @@ $articles = $statement->fetchAll();
         .topbar { display: flex; gap: 10px; align-items: center; margin-bottom: 1rem; }
         .btn { background: #1f6feb; color: #fff; border: 0; padding: 8px 12px; cursor: pointer; text-decoration: none; border-radius: 4px; }
         .btn.secondary { background: #555; }
-        .form-wrap { max-width: 1000px; margin-bottom: 2rem; }
+        .form-wrap { max-width: 1000px; margin-bottom: 2rem; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
         .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 10px; }
         input, select { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
         .toolbar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
@@ -278,31 +360,43 @@ $articles = $statement->fetchAll();
         .badge { padding: 2px 8px; border-radius: 999px; font-size: 12px; }
         .badge.brouillon { background: #fff3cd; color: #7a5a00; }
         .badge.publie { background: #d4edda; color: #1e6e34; }
-        .article-view { max-width: 900px; border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 2rem; }
+        .article-view { max-width: 900px; border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 2rem; background: white; }
         .article-view img { max-width: 100%; height: auto; }
         .meta { color: #666; margin-bottom: 1rem; }
         .small { color: #666; font-size: 13px; }
     </style>
 </head>
 <body>
-    <h1>Back Office Articles</h1>
-    <p class="ok">Connexion base de données: OK</p>
-
-    <?php if ($message !== ''): ?>
-        <p class="ok"><?= htmlspecialchars($message) ?></p>
-    <?php endif; ?>
-
-    <?php if ($error !== ''): ?>
-        <p class="error"><?= htmlspecialchars($error) ?></p>
-    <?php endif; ?>
-
-    <div class="topbar">
-        <a class="btn" href="/admin/new">+ Nouvel article</a>
-        <a class="btn secondary" href="/admin/">Liste des articles</a>
+    <div class="navbar">
+        <h1>🔐 Back Office Articles</h1>
+        <div class="user-menu">
+            <div class="user-info">
+                <div class="user-name"><?= htmlspecialchars($_SESSION['user_name'] ?? 'Utilisateur') ?></div>
+                <div class="user-email"><?= htmlspecialchars($_SESSION['user_email'] ?? '') ?></div>
+            </div>
+            <a href="/?logout=1" class="logout-btn">Déconnexion</a>
+        </div>
     </div>
 
-    <?php if ($action === 'new' || $action === 'edit'): ?>
-    <div class="form-wrap">
+    <div class="container">
+        <h1>Back Office Articles</h1>
+        <p class="ok">Connexion base de données: OK</p>
+
+        <?php if ($message !== ''): ?>
+            <p class="ok"><?= htmlspecialchars($message) ?></p>
+        <?php endif; ?>
+
+        <?php if ($error !== ''): ?>
+            <p class="error"><?= htmlspecialchars($error) ?></p>
+        <?php endif; ?>
+
+        <div class="topbar">
+            <a class="btn" href="/admin/new">+ Nouvel article</a>
+            <a class="btn secondary" href="/admin/">Liste des articles</a>
+        </div>
+
+        <?php if ($action === 'new' || $action === 'edit'): ?>
+        <div class="form-wrap">
         <h2><?= $action === 'edit' ? 'Modifier un article' : 'Créer un article' ?></h2>
         <form method="post" id="article-form">
             <input type="hidden" name="mode" value="<?= $action === 'edit' ? 'edit' : 'create' ?>">
@@ -524,5 +618,6 @@ $articles = $statement->fetchAll();
             });
         }
     </script>
+    </div>
 </body>
 </html>
